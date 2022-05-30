@@ -33,4 +33,18 @@ if (modelName == "Computer")
 
         computerRepository.Save(computer);
     }
+
+    if (modelAction == "Show")
+    {
+        try
+        {
+            var id = Convert.ToInt32(args[2]);
+            var computer = computerRepository.GetById(id);
+            Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
+        }
+        catch (System.Exception)
+        {
+            Console.WriteLine("Input value is not valid (id may not exist)");
+        }
+    }
 }
