@@ -66,4 +66,4 @@ if (modelName == "Computer")
         computerRepository.Delete(id);
         Console.WriteLine("Deleted");
     }
-}// att lab
+}
