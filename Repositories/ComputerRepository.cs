@@ -97,6 +97,24 @@ class ComputerRepository
         connection.Close();
     }
 
+    public bool ExistsById(int id)
+    {
+        var connection = new SqliteConnection(_databaseConfig.ConnectionString);
+        connection.Open();
+
+        var command = connection.CreateCommand();
+        command.CommandText = "SELECT COUNT(id) FROM Computers WHERE id = $id";
+        command.Parameters.AddWithValue("$id", id);
+
+        //var reader = command.ExecuteReader();
+        //reader.Read(); 
+         
+        //return reader.GetBoolean(0);
+
+        return Convert.ToBoolean(command.ExecuteScalar());
+
+    }
+
     private Computer ReaderToComputer(SqliteDataReader reader)
     {
         var computer = new Computer(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));

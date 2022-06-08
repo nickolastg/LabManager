@@ -35,22 +35,22 @@ if (modelName == "Computer")
     }
 
     if (modelAction == "Show")
-    {
-        try
+    {   
+        var id = Convert.ToInt32(args[2]);
+
+        if (computerRepository.ExistsById(id))
         {
-            var id = Convert.ToInt32(args[2]);
             var computer = computerRepository.GetById(id);
             Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
-        }
-        catch (System.Exception)
-        {
-            Console.WriteLine("Input value is not valid (id may not exist)");
-        }
+        } else { Console.WriteLine("Input value is not valid (id may not exist)");}
     }
 
     if (modelAction == "Update")
     {
         var id = Convert.ToInt32(args[2]);
+
+        if (computerRepository.ExistsById(id)){
+
         var ram = args[3];
         var processor = args[4];
 
@@ -58,12 +58,16 @@ if (modelName == "Computer")
 
         computerRepository.Update(computer);
         Console.WriteLine("Updated");
+        } else { Console.WriteLine("Input value is not valid (id may not exist)");}
     }
 
     if (modelAction == "Delete")
     {
         var id = Convert.ToInt32(args[2]);
+        
+        if (computerRepository.ExistsById(id)){
         computerRepository.Delete(id);
         Console.WriteLine("Deleted");
+        } else { Console.WriteLine("Input value is not valid (id may not exist)");}
     }
 }
