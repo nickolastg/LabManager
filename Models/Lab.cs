@@ -14,4 +14,9 @@ class Lab
         Name = name;
         Block = block;
     }
+
+    public Lab ()
+    {
+
+    }
 }
